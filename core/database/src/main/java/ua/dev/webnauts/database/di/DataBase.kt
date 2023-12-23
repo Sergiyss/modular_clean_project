@@ -1,6 +1,5 @@
 package ua.dev.webnauts.database.di
 
-import android.app.Application
 import android.content.Context
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import dagger.Module

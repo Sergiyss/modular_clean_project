@@ -57,10 +57,12 @@ coroutines-extensions-jvm = {group = "app.cash.sqldelight", name = "coroutines-e
 com-android-application = { id = "com.android.application", version.ref = "agp" }
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin-android" }
 org-jetbrains-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "org-jetbrains-kotlin-android" }
-
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hiltAndroid" }
 com-android-library = { id = "com.android.library", version.ref = "agp" }
 app-cash-sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
 
+
+nowinandroid-android-hilt = { id = "nowinandroid.android.hilt", version = "unspecified" }
 
 [bundles]
 
