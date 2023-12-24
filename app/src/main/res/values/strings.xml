@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Modular Clean Design</string>
+
+
+    <string name="nav_1">Home</string>
+    <string name="nav_2">See</string>
+    <string name="nav_3">Profile</string>
+    <string name="not_connected">not connected newtwokr</string>
 </resources>

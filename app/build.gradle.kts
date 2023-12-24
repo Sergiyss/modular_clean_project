@@ -56,8 +56,18 @@ android {
 
 dependencies {
 
+    //путь к модулям
+    implementation(projects.core.database)
+    implementation(projects.core.network)
+    implementation(projects.core.ui)
+    implementation(projects.core.utils)
+
+
+
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
+    implementation(libs.androidx.compose.runtime)
+    implementation(libs.androidx.lifecycle.runtimeCompose)
     implementation(libs.activity.compose)
     implementation(platform(libs.compose.bom))
     implementation(libs.ui)
@@ -70,18 +80,24 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.ui.test.junit4)
+    androidTestImplementation(libs.androidx.navigation.testing)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
 
-    //путь к модулям
-    implementation(projects.core.database)
-    implementation(projects.core.network)
-    implementation(projects.core.ui)
+    implementation(libs.androidx.compose.material3.windowSizeClass)
+
     //Hilt
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
     kapt(libs.hilt.compiler.dagger )
 
     implementation(libs.coil.compose)
+
+    //Navigation
+    implementation(libs.androidx.navigation.compose)
+
+    //
+
+
 
 }
