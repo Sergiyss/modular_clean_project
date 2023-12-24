@@ -4,19 +4,15 @@ plugins {
     alias(libs.plugins.org.jetbrains.kotlin.android)
     alias(libs.plugins.org.jetbrains.kotlin.kapt)
     alias(libs.plugins.hilt)
-
 }
 
 android {
-    namespace = "ua.dev.webnauts.modularcleandesign"
+    namespace = "ua.dev.webnauts.home"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "ua.dev.webnauts.modularcleandesign"
+
         minSdk = 26
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -44,44 +40,39 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.5"
+        kotlinCompilerExtensionVersion = "1.5.4"
     }
     packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-            excludes += "/META-INF/INDEX.LIST"
-        }
+        resources.excludes.addAll(
+            listOf(
+                "/META-INF/{AL2.0,LGPL2.1}",
+                "META-INF/LICENSE.md",
+                "META-INF/LICENSE-notice.md"
+            )
+        )
     }
 }
 
 dependencies {
 
-
-
-
-
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
-    implementation(libs.androidx.compose.runtime)
-    implementation(libs.androidx.lifecycle.runtimeCompose)
     implementation(libs.activity.compose)
     implementation(platform(libs.compose.bom))
     implementation(libs.ui)
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
-
+    implementation(libs.androidx.navigation.compose)
     testImplementation(libs.junit)
-    testImplementation(libs.androidx.navigation.testing)
-    androidTestImplementation(libs.androidx.navigation.testing)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    androidTestImplementation(libs.androidx.navigation.testing)
     androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
 
-    implementation(libs.androidx.compose.material3.windowSizeClass)
 
     //Hilt
     implementation(libs.hilt.android)
@@ -90,18 +81,6 @@ dependencies {
 
     implementation(libs.coil.compose)
 
-    //Navigation
-    implementation(libs.androidx.navigation.compose)
-
-    //
-
-
-    //путь к модулям
-    implementation(projects.core.database)
-    implementation(projects.core.network)
     implementation(projects.core.ui)
-    implementation(projects.core.utils)
-    implementation(projects.feature.homs)
-
-
+    implementation(projects.core.network)
 }

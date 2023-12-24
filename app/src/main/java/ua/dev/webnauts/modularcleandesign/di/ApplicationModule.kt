@@ -7,10 +7,9 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import ua.dev.webnauts.database.DatabaseUser
-import ua.dev.webnauts.database.di.DataBase
-import ua.dev.webnauts.database.model.UserDatabaseManagement
 import ua.dev.webnauts.modularcleandesign.App
+import ua.dev.webnauts.utils.util.ConnectivityManagerNetworkMonitor
+import ua.dev.webnauts.utils.util.NetworkMonitor
 import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 @Module
@@ -25,6 +24,14 @@ object ApplicationModule {
         @ApplicationContext context : Context
     ): App {
         return context as App
+    }
+
+
+    @Provides
+    fun provideNetworkMonitor(
+        @ApplicationContext context: Context
+    ): NetworkMonitor {
+        return ConnectivityManagerNetworkMonitor(context)
     }
 
     /**

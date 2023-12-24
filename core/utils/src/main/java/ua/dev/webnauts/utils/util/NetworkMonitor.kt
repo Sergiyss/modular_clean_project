@@ -16,7 +16,9 @@
 
 package ua.dev.webnauts.utils.util
 
+import dagger.Provides
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Singleton
 
 /**
  * Utility for reporting app connectivity status

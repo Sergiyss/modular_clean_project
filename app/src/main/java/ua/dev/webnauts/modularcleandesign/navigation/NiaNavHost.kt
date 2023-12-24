@@ -16,9 +16,14 @@
 
 package ua.dev.webnauts.modularcleandesign.navigation
 
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import ua.dev.webnauts.homs.navigation.HOME
+import ua.dev.webnauts.homs.navigation.homeScreen
 import ua.dev.webnauts.modularcleandesign.app.NiaAppState
 
 /**
@@ -28,6 +33,7 @@ import ua.dev.webnauts.modularcleandesign.app.NiaAppState
  * The navigation graph defined in this file defines the different top level routes. Navigation
  * within each route is handled using state and Back Handlers.
  */
+
 @Composable
 fun NiaNavHost(
     appState: NiaAppState,
@@ -41,6 +47,12 @@ fun NiaNavHost(
         startDestination = startDestination,
         modifier = modifier,
     ) {
+        homeScreen()
 
+//        composable(
+//            route = HOME,
+//        ) {
+//            homeScreen()
+//        }
     }
 }

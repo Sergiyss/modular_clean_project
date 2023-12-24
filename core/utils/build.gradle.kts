@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "ua.dev.webnauts.utils"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 26
