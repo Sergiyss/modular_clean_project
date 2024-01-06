@@ -15,7 +15,6 @@ class ExampleUnitTest {
     /**
      * Всякие нешьяки, которые могут улучшить производительность
      * */
-
     @Test
     fun addition_isCorrect() {
         /**
