@@ -11,7 +11,6 @@ import kotlin.system.measureTimeMillis
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 class ExampleUnitTest {
-
     /**
      * Всякие нешьяки, которые могут улучшить производительность
      * */
