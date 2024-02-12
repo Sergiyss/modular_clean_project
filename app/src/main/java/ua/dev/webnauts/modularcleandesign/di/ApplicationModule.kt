@@ -7,7 +7,11 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainCoroutineDispatcher
 import ua.dev.webnauts.modularcleandesign.App
+import ua.dev.webnauts.utils.util.AppDispatchers
 import ua.dev.webnauts.utils.util.ConnectivityManagerNetworkMonitor
 import ua.dev.webnauts.utils.util.NetworkMonitor
 import javax.inject.Singleton
@@ -48,5 +52,9 @@ object ApplicationModule {
 //    @Singleton
 //    fun provideUserDatabaseManagement(databaseUser : DatabaseUser) =
 //        UserDatabaseManagement(databaseUser)
+
+    //Dispatchers
+    @Provides
+    fun  provideAppDispatchers(): AppDispatchers = AppDispatchers()
 
 }
