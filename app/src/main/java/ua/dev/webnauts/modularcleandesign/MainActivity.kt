@@ -1,9 +1,7 @@
 package ua.dev.webnauts.modularcleandesign
 
 import android.os.Bundle
-import android.util.Size
 import androidx.activity.ComponentActivity
-import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
@@ -14,7 +12,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import dagger.hilt.android.AndroidEntryPoint
 import ua.dev.webnauts.modularcleandesign.app.NiaApp
-
 import ua.dev.webnauts.utils.util.NetworkMonitor
 import javax.inject.Inject
 
@@ -32,7 +29,6 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             val darkTheme = shouldUseDarkTheme(uiState)
-
                 NiaApp(
                     networkMonitor = networkMonitor,
                     windowSizeClass = calculateWindowSizeClass(this),
