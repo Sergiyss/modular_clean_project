@@ -20,6 +20,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Warning
@@ -40,35 +43,30 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import coil.compose.rememberAsyncImagePainter
-import coil.request.ImageRequest
-import ua.dev.webnauts.network.data.randomuser.RandomUserResponse
+import ua.dev.webnauts.homs.ui_components.CardCharacter
 import ua.dev.webnauts.network.ktor.NetworkResponse
-import ua.dev.webnauts.ui.ui_components.ContactForm
-import ua.dev.webnauts.ui.ui_components.dialog.CustomDialog
+import ua.dev.webnauts.network.model.character.CharacterDto
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(viewModel: HomeViewModel = hiltViewModel()) {
-
+    val state = rememberLazyListState()
     var randomUser by viewModel.randomUser
 
     var test by remember { mutableStateOf("Home Screen") }
     // var text2 by remember { mutableStateOf<Int>(0) }
 
-    LaunchedEffect(key1 = Unit, block = {
+
+    LaunchedEffect(key1 = state.isAtBottom(), block = {
         viewModel.getRandomUser()
     })
-    CustomDialog(showDialog = true, content = {
-        ResetWarning({})
-    })
+
+
     Scaffold(modifier = Modifier.fillMaxSize(1f),
         content = {
             Column(
@@ -92,66 +90,19 @@ fun MainScreen(viewModel: HomeViewModel = hiltViewModel()) {
                     }
 
                     is NetworkResponse.Success -> {
-                        (randomUser as NetworkResponse.Success<RandomUserResponse>).data.results[0]?.let {
-                            Row(modifier = Modifier.fillMaxWidth(1f),
-                                horizontalArrangement = Arrangement.spacedBy(
-                                    15.dp,
-                                    Alignment.Start
-                                ),
-                                verticalAlignment = Alignment.Top,
-                            ) {
-                                Column(
-                                    modifier = Modifier.fillMaxWidth(.3f),
-                                    verticalArrangement = Arrangement.spacedBy(10.dp, Alignment.Top),
-                                    horizontalAlignment = Alignment.Start,
-                                ) {
-
-                                    Image(
-                                        painter = rememberAsyncImagePainter(
-                                            ImageRequest.Builder(LocalContext.current)
-                                                .data(data = it.picture.large)
-                                                .apply(block = fun ImageRequest.Builder.() {
-                                                    size(128)
-                                                }).build(),
-
-                                            ),
-                                        contentDescription = null,
-                                        modifier = Modifier
-                                            .size(128.dp),
-                                        contentScale = ContentScale.Crop
-                                    )
-
-                                    ContactForm(
-                                        title = "Age :",
-                                        contactInfo = "${it.dob.age} ${it.name.first}"
+                        (randomUser as NetworkResponse.Success<CharacterDto>).data.results?.let {characterDto ->
+                            LazyColumn(content = {
+                                items(characterDto){resultDto->
+                                    CardCharacter(
+                                        avatarCharacter= resultDto.image,
+                                        nameCharacter = resultDto.name,
+                                        lifeStatus = resultDto.status,
+                                        locationCharacter = resultDto.location.name,
+                                        firstSeenIn = resultDto.type
                                     )
                                 }
-
-                                Column(
-                                    modifier = Modifier.fillMaxWidth(1f),
-                                    verticalArrangement = Arrangement.spacedBy(
-                                        10.dp,
-                                        Alignment.Top
-                                    ),
-                                    horizontalAlignment = Alignment.Start,
-                                ) {
-
-
-                                    ContactForm(
-                                        title = "Name :",
-                                        contactInfo = "${it.name.last} ${it.name.first}"
-                                    )
-
-                                    ContactForm(
-                                        title = "Phone :",
-                                        contactInfo = it.phone
-                                    )
-                                    ContactForm(
-                                        title = "Email :",
-                                        contactInfo = it.email
-                                    )
-                                }
-                            }
+                            },
+                                state = state,)
                         }
 
                     }

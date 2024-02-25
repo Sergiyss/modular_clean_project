@@ -1,8 +1,8 @@
 package ua.dev.webnauts.network.ktor
 
-import ua.dev.webnauts.network.data.randomuser.RandomUserResponse
+import ua.dev.webnauts.network.model.character.CharacterDto
 
 interface ServiceApi {
-   suspend fun randomUser(): NetworkResponse<RandomUserResponse>
+   suspend fun getCharacter(page : Int): NetworkResponse<CharacterDto>
 
 }

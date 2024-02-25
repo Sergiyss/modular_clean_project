@@ -1,20 +1,10 @@
 package ua.dev.webnauts.modularcleandesign
 
-import android.app.Application
-import android.content.Context
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-
-import kotlinx.coroutines.launch
 import ua.dev.webnauts.database.DatabaseUser
 import ua.dev.webnauts.database.model.UserDatabaseManagement
-import ua.dev.webnauts.network.data.randomuser.RandomUserResponse
-import ua.dev.webnauts.network.ktor.NetworkResponse
 import ua.dev.webnauts.network.ktor.ServiceApi
-
 import javax.inject.Inject
 
 @HiltViewModel
@@ -24,8 +14,7 @@ class MainViewModel @Inject constructor(
     private val serviceApi: ServiceApi,
 ) : ViewModel() {
 
-    var randomUser = mutableStateOf<NetworkResponse<RandomUserResponse>?>(null)
-        private set
+
 
 
 
@@ -38,14 +27,7 @@ class MainViewModel @Inject constructor(
     suspend fun getUseFlow() =
         userDatabaseManagement.getUserFlow()
 
-    //Получение рандомного пользователя
 
-    fun getRandomUser(){
-        viewModelScope.launch(Dispatchers.IO) {
-            randomUser.value = NetworkResponse.Loading()
-            randomUser.value = serviceApi.randomUser()
-        }
-    }
 }
 
 enum class ThemeBrand {

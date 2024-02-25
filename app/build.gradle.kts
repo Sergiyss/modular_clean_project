@@ -22,15 +22,29 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        resourceConfigurations  += listOf("uk",)
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+
+
+            //Other parameters
+            isDebuggable = false
+            isJniDebuggable = false
+            isRenderscriptDebuggable = false
+            isPseudoLocalesEnabled = false
+
+            isMinifyEnabled = true
+            isShrinkResources = true
+
+
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
+                getDefaultProguardFile("proguard-android.txt"),
                 "proguard-rules.pro"
             )
+
         }
     }
     compileOptions {
@@ -39,6 +53,8 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+
+        freeCompilerArgs = listOf("-Xstring-concat=inline")
     }
     buildFeatures {
         compose = true

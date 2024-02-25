@@ -32,6 +32,15 @@ androidxComposeRuntimeTracing = "1.0.0-beta01"
 androidxMetrics = "1.0.0-alpha04"
 ######
 androidxLifecycle = "2.6.2"
+org-jetbrains-kotlin-jvm = "1.9.20"
+
+
+kotlin-coroutines = "1.8.0"
+
+kotlin-serialization = "1.9.10"
+
+
+landscapist-coil = "2.3.1"
 
 
 [libraries]
@@ -97,6 +106,14 @@ androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecy
 androidx-lifecycle-runtimeCompose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
 androidx-lifecycle-viewModelCompose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
 
+kotlinx-coroutines-core = {module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlin-coroutines"}
+kotlinx-coroutines-android = {module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlin-coroutines"}
+
+#Загрузка изображений
+landscapist-coil = {module = "com.github.skydoves:landscapist-coil", version.ref = "landscapist-coil"}
+landscapist-placeholder = {module = "com.github.skydoves:landscapist-placeholder", version.ref = "landscapist-coil"}
+
+
 
 
 [plugins]
@@ -109,6 +126,7 @@ app-cash-sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
 kotlinx-serialization =  { id = "org.jetbrains.kotlin.plugin.serialization", version = "1.9.10" }
 
 nowinandroid-android-hilt = { id = "nowinandroid.android.hilt", version = "unspecified" }
+org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin-jvm" }
 
 [bundles]
 

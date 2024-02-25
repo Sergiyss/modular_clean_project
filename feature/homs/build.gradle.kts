@@ -76,4 +76,7 @@ dependencies {
 
     implementation(projects.core.ui)
     implementation(projects.core.network)
+
+    implementation(libs.landscapist.coil)
+    implementation(libs.landscapist.placeholder)
 }
